@@ -21,9 +21,14 @@ pipeline{
         sh 'sudo docker tag  guessnumber:$BUILD_NUMBER can997/guessnumber:$BUILD_NUMBER'
       }
     }
+    stage('docker login'){
+      steps{
+        sh 'echo  $dockerhub_PSW | sudo docker login --username can997 --password-stdin
+      }
+    }
     stage('push image to DockerHub'){
       steps{
-        sh 'echo  $dockerhub_PSW | sudo docker push can997/guessnumber:$BUILD_NUMBER --username $dockerhub_USR --password-stdin'
+        sh 'sudo docker push can997/guessnumber:$BUILD_NUMBER'
       }
     }
   }
