@@ -21,7 +21,7 @@ pipeline{
         sh 'docker tag can997/guessNumber:${env.BUILD_NUMBER} guessNumber:${env.BUILD_NUMBER}'
       }
     }
-    stage('push image to DockerHub){
+    stage('push image to DockerHub'){
       steps{
         sh 'cat $dockerhub_PSW | docker push can997/guessNumber:$(env.BUILD_NUMBER} -u $dockerhub_USR --password-stdin'
       }
