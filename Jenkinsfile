@@ -23,7 +23,7 @@ pipeline{
     }
     stage('push image to DockerHub'){
       steps{
-        sh 'cat $dockerhub_PSW | sudo docker push can997/guessnumber:$(env.BUILD_NUMBER} -u $dockerhub_USR --password-stdin'
+        sh 'cat $dockerhub_PSW | sudo docker push can997/guessnumber:$BUILD_NUMBER -u $dockerhub_USR --password-stdin'
       }
     }
   }
