@@ -18,7 +18,7 @@ pipeline{
     }
     stage('tag image'){
       steps{
-        sh 'docker tag can997/guessNumber:${env.BUILD_NUMBER} guessNumber:${env.BUILD_NUMBER}'
+        sh 'docker tag  guessNumber:${env.BUILD_NUMBER} can997/guessNumber:${env.BUILD_NUMBER}'
       }
     }
     stage('push image to DockerHub'){
