@@ -23,7 +23,7 @@ pipeline{
     }
     stage('docker login'){
       steps{
-        sh 'echo  $dockerhub_PSW | sudo docker login --username can997 --password-stdin
+        sh 'echo  $dockerhub_PSW | sudo docker login --username can997 --password-stdin'
       }
     }
     stage('push image to DockerHub'){
