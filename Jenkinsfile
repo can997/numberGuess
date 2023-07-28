@@ -13,17 +13,17 @@ pipeline{
     }
     stage('build image'){
        steps{
-         sh 'docker build -t guessnumber:$BUILD_NUMBER .'
+         sh 'sudo docker build -t guessnumber:$BUILD_NUMBER .'
        }
     }
     stage('tag image'){
       steps{
-        sh 'docker tag  guessnumber:$BUILD_NUMBER can997/guessnumber:$BUILD_NUMBER'
+        sh 'sudo docker tag  guessnumber:$BUILD_NUMBER can997/guessnumber:$BUILD_NUMBER'
       }
     }
     stage('push image to DockerHub'){
       steps{
-        sh 'cat $dockerhub_PSW | docker push can997/guessnumber:$(env.BUILD_NUMBER} -u $dockerhub_USR --password-stdin'
+        sh 'cat $dockerhub_PSW | sudo docker push can997/guessnumber:$(env.BUILD_NUMBER} -u $dockerhub_USR --password-stdin'
       }
     }
   }
