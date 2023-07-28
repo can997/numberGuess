@@ -1,5 +1,8 @@
 pipeline{
   agent any
+  environment{
+    dockerhub=credentials('ce41d77d-920f-483d-8a33-50da3ade1d01')
+  }
   stages{
     stage('check out scm'){
       steps{
@@ -10,17 +13,17 @@ pipeline{
     }
     stage('build image'){
        steps{
-         sh 'docker build -t guessNumber:${BUILD_NUMBER} .'
+         sh 'docker build -t guessNumber:${env.BUILD_NUMBER} .'
        }
     }
     stage('tag image'){
       steps{
-        sh 'docker tag can997/guessNumber:${BUILD_NUMBER} guessNumber:${BUILD_NUMBER}'
+        sh 'docker tag can997/guessNumber:${env.BUILD_NUMBER} guessNumber:${env.BUILD_NUMBER}'
       }
     }
     stage('push image to DockerHub){
       steps{
-        sh 'cat $dockerhub_pass | docker push can997/guessNumber:$(BUILD_NUMBER} -u $dockerhub_user --password-stdin'
+        sh 'cat $dockerhub_PSW | docker push can997/guessNumber:$(env.BUILD_NUMBER} -u $dockerhub_USR --password-stdin'
       }
     }
   }
