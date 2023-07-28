@@ -1,5 +1,6 @@
 FROM ubuntu
 RUN apt-get update\
-    && agt-get install -y python3
-COPY guessNumber.py guessNumber
-CMD ["python3","guessNumber/guessNumber.py]
+    && apt-get install -y python3
+COPY numberGuess.py /opt/guessNumber/numberGuess.py
+WORKDIR /opt/guessNumber
+CMD ["python3","numberGuess.py"]
