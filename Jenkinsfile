@@ -13,7 +13,7 @@ pipeline{
     }
     stage('build image'){
        steps{
-         sh 'docker build -t guessnumber:$BUILD_NUMBER'
+         sh 'docker build -t guessnumber:$BUILD_NUMBER .'
        }
     }
     stage('tag image'){
